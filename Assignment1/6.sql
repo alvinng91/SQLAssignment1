@@ -1,0 +1,1 @@
+alter table project add project_manager varchar(255);

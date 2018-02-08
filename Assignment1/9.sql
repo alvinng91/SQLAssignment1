@@ -1,0 +1,1 @@
+delete from project where PROJECT_DESCRIPTION='Election Rage';
