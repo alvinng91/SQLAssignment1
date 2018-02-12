@@ -1,0 +1,26 @@
+select * from EMPLOYEES where COMMISSION_PCT is null;
+select * from EMPLOYEES where FIRST_NAME like 'B%';
+select * from EMPLOYEES where HIRE_DATE > TO_DATE('01-Jan-1982','DD-Mon-YYYY');
+select * from EMPLOYEES where SALARY > 2000;
+select employee_id, department_id, salary from employees where employee_id=7900;
+select * from employees where department_id=20;
+select * from employees where department_id in (10, 30);
+select * from employees where salary >= 1000 and salary <= 3000;
+select first_name||' '||last_name "NAME", job_id, hire_date from employees where hire_date between TO_DATE('February 20, 80','Month dd, yy') and TO_DATE('May 01, 82','Month dd, yy') order by hire_date;
+select first_name||' '||last_name "NAME", hire_date from employees where extract(year from HIRE_DATE)=1982;
+select emp.first_name||' '||emp.last_name "NAME", j.job_title from employees emp, jobs j where emp.job_id = j.job_id and emp.manager_id is null;
+select emp.first_name||' '||emp.last_name "NAME", j.job_title, emp.salary from employees emp, jobs j where emp.job_id = j.job_id and j.job_id like 'SA%' and emp.salary not in(1600, 3000, 1250);
+select department_name from departments where department_id=10;
+select distinct job_id from employees;
+select distinct department_id, job_id from employees;
+select distinct manager_id from employees;
+select min(salary), max(salary) from employees;
+select min(salary), max(salary) from employees group by department_id;
+select count(*) from employees where salary > 1500;
+select count(*) from employees where salary > 1500 group by department_id; 
+select max(salary) from employees where department_id=30;
+
+select * from employees where department_id = (select department_id from departments where department_name='Sales');
+select * from employees where salary > (select salary from employees where first_name = 'Blake');
+select * from employees where salary < (select avg(salary) from employees);
+select * from employees where salary = (select max(salary) from employees where department_id = 30) and department_id = 30;
